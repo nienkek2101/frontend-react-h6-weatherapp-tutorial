@@ -34,6 +34,7 @@ function App() {
         // de error wordt weergegeven in de console
         console.error(e);
         toggleError(true);
+        setWeatherData('');
       }
     };
     // 2. we roepen de functie aan (als location is veranderd, maar niet als het een null/undefined/lege string is)
