@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchBar from './components/searchBar/SearchBar';
 import TabBarMenu from './components/tabBarMenu/TabBarMenu';
@@ -8,13 +8,17 @@ import axios from 'axios';
 import ForecastTab from "./pages/forecastTab/ForecastTab";
 import TodayTab from "./pages/todayTab/TodayTab";
 import kelvinToCelsius from "./helpers/kelvinToCelsius";
+import { TempContext } from "./context/TempProvider";
 
-const apiKey = '930a9b8f2616c3af1d16483406fd32b4'
+
+
+// const apiKey = '930a9b8f2616c3af1d16483406fd32b4'
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
   const [location, setLocation] = useState('');
   const [error, toggleError] = useState(false);
+  const { kelvinToMetric } = useContext(TempContext);
 
   useEffect(() => {
     // 1. we definiëren de functie
@@ -22,7 +26,7 @@ function App() {
     async function fetchData() {
       toggleError(false);
       try {
-        const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location},&appid=${apiKey}&lang=nl`);
+        const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location},&appid=${process.env.REACT_APP_API_KEY}&lang=nl`);
         console.log(result.data);
         console.log(result.data.name);
         console.log(result.data.weather[0].description);
@@ -63,7 +67,7 @@ function App() {
                 <>
                   <h2>{weatherData.weather[0].decription}</h2>
                   <h3>{weatherData.name}</h3>
-                  <h1>{kelvinToCelsius(weatherData.main.temp)}</h1>
+                  <h1>{kelvinToMetric(weatherData.main.temp)}</h1>
                 </>
                 }
               {/*<button*/}

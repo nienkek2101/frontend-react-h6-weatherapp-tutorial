@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './ForecastTab.css';
 import axios from 'axios';
 import kelvinToCelsius from "../../helpers/kelvinToCelsius";
 import createDateString from "../../helpers/createDateString";
+import { TempContext } from "../../context/TempProvider";
 
-const apiKey = '930a9b8f2616c3af1d16483406fd32b4'
+
+
+// const apiKey = '930a9b8f2616c3af1d16483406fd32b4'
 
 function ForecastTab({ coordinates }) {
     const [forecasts, setForecasts] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const { kelvinToMetric } = useContext(TempContext);
 
     useEffect(() => {
         async function fetchData() {
             toggleError(false);
             toggleLoading(true);
             try {
-                const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,current,hourly&appid=${apiKey}&lang=nl`);
+                const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=minutely,current,hourly&appid=${process.env.REACT_APP_API_KEY}&lang=nl`);
                 // zorg dat je eerst de juiste data logt, dus dat je weet waar welke data staat in het object.
                 setForecasts(result.data.daily.slice(1, 6));
                 console.log(forecasts);
@@ -47,7 +51,7 @@ function ForecastTab({ coordinates }) {
 
                     <section className="forecast-weather">
                         <span>
-                            {kelvinToCelsius(day.temp.day)}
+                            {kelvinToMetric(day.temp.day)}
                         </span>
                         <span className="weather-description">
                             {/*{day.weather[0].description}*/}
