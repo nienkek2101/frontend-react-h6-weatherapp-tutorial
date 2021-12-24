@@ -3,8 +3,7 @@ import './ForecastTab.css';
 import axios from 'axios';
 import kelvinToCelsius from "../../helpers/kelvinToCelsius";
 import createDateString from "../../helpers/createDateString";
-import { TempContext } from "../../context/TempProvider";
-
+import {TempContext} from "../../context/TempContextProvider";
 
 
 // const apiKey = '930a9b8f2616c3af1d16483406fd32b4'

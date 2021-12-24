@@ -6,7 +6,7 @@ export const TempContext = createContext(null);
 
 function TempContextProvider({ children }) {
     // hier komt straks de state waarin de context-data plaatsen
-    const [ selectedMetric, toggleSelectedMetric ] = useState('celcius')
+    const [ selectedMetric, toggleSelectedMetric ] = useState('celcius');
 
     function toggleTemp() {
         if (selectedMetric === 'celcius') {

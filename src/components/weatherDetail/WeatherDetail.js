@@ -2,8 +2,7 @@ import React, {useContext} from 'react';
 import './WeatherDetail.css';
 import kelvinToCelsius from "../../helpers/kelvinToCelsius";
 import iconMapper from "../../helpers/iconMapper";
-import { TempContext } from "../../context/TempProvider";
-
+import {TempContext} from "../../context/TempContextProvider";
 
 
 function WeatherDetail({ temp, type, description }) {

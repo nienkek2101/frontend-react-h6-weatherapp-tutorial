@@ -1,14 +1,14 @@
 import React from 'react';
-import TempContextProvider from "./context/TempProvider";
+import TempContextProvider from "./context/TempContextProvider";
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <React.StrictMode>
-        <TempContextProvider.Provider>
+        <TempContextProvider>
             <App/>
-        </TempContextProvider.Provider>
+        </TempContextProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

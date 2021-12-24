@@ -8,7 +8,7 @@ import axios from 'axios';
 import ForecastTab from "./pages/forecastTab/ForecastTab";
 import TodayTab from "./pages/todayTab/TodayTab";
 import kelvinToCelsius from "./helpers/kelvinToCelsius";
-import { TempContext } from "./context/TempProvider";
+import { TempContext } from "./context/TempContextProvider";
 
 
 
