@@ -3,17 +3,19 @@ import './MetricSlider.css';
 import {TempContext} from "../../context/TempContextProvider";
 
 function MetricSlider() {
-    const { toggleTemp } = useContext(TempContext);
     const [ checked, toggleChecked ] = useState(true);
+    const { toggleTemp } = useContext(TempContext);
 
     useEffect(() => {
         toggleTemp();
+        console.log('temptoggle');
     }, [checked]);
 
   return (
+
     <div className="weather-container-extention">
       Weergeven in
-
+        {/*{console.log(checked)}*/}
       <p className="switch-label">
         C &deg;
       </p>

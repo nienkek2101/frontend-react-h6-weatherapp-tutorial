@@ -53,7 +53,7 @@ function ForecastTab({ coordinates }) {
                             {kelvinToMetric(day.temp.day)}
                         </span>
                         <span className="weather-description">
-                            {/*{day.weather[0].description}*/}
+                            {day.weather[0].description}
                         </span>
                     </section>
                 </article>

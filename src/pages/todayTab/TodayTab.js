@@ -24,6 +24,7 @@ function TodayTab({ coordinates }) {
 				]);
 				console.log(result.data);
 				console.log(weatherToday.length);
+				console.log(result.data.hourly[0].weather[0].description);
 			} catch(e) {
 				console.error(e);
 				toggleError(true);
