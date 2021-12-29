@@ -8,7 +8,7 @@ function MetricSlider() {
 
     useEffect(() => {
         toggleTemp();
-        console.log('temptoggle');
+        // console.log('temptoggle');
     }, [checked]);
 
   return (

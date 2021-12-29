@@ -7,7 +7,7 @@ export const TempContext = createContext(null);
 function TempContextProvider({ children }) {
     // hier komt straks de state waarin de context-data plaatsen
     const [ selectedMetric, toggleSelectedMetric ] = useState('celcius');
-    console.log(selectedMetric);
+    // console.log(selectedMetric);
 
 
     function toggleTemp() {
@@ -18,12 +18,23 @@ function TempContextProvider({ children }) {
         }
     }
 
+    function kelvinToMetric(kelvin) {
+        if (selectedMetric === 'celcius') {
+            return kelvinToCelsius(kelvin);
+        } else {
+            return kelvinToFahrenheit(kelvin);
+        }
+    }
+
+    const data = {
+        toggleTemp: toggleTemp,
+        kelvinToMetric: kelvinToMetric,
+        // kelvinToMetric: selectedMetric === 'celcius' ? kelvinToCelsius : kelvinToFahrenheit,
+    }
+
     return (
         <TempContext.Provider
-            value={{
-                toggleTemp: toggleTemp,
-                kelvinToMetric: selectedMetric === 'celsius' ? kelvinToCelsius : kelvinToFahrenheit,
-        }}>
+            value={data}>
             {/*hier komt het component waar we onze eigen provider omheen wikkelen*/}
             {children}
         </TempContext.Provider>
